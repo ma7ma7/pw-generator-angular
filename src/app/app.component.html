@@ -13,14 +13,23 @@
 
           <div class="form-group">
             <label for="lenght">Password Lenght</label>
-            <input type="text" class="form-control" id="lenght">
+            <input 
+              type="text" 
+              class="form-control" 
+              id="lenght"
+              [value]='lenght'
+              >
           </div>
 
           <!-- Here we put our controls -->
           <div class="row">
             <div class="col-md-4">
               <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="charachters">
+                <input 
+                  (change)="onChangeLetters()"
+                  type="checkbox" 
+                  class="custom-control-input" 
+                  id="charachters">
                 <label class="custom-control-label" for="charachters">
                   Use Charachters
                 </label>
@@ -29,7 +38,11 @@
 
             <div class="col-md-4">
               <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="numbers">
+                <input 
+                  (change)="onChangeNumbers()"
+                  type="checkbox"
+                  class="custom-control-input"
+                  id="numbers">
                 <label class="custom-control-label" for="numbers">
                   Use Numbers
                 </label>
@@ -38,7 +51,11 @@
 
             <div class="col-md-4">
               <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="symbols">
+                <input 
+                  (change)="onChangeSymbols()"
+                  type="checkbox"
+                  class="custom-control-input"
+                  id="symbols">
                 <label class="custom-control-label" for="symbols">
                   Use Symbols
                 </label>
@@ -47,7 +64,7 @@
           </div>
 
           <!-- Here the Submit button -->
-          <button class="btn btn-primary mt-4">
+          <button class="btn btn-primary mt-4" (click)='genPassword()'>
             Generate Password
           </button>
 
