@@ -17,7 +17,7 @@
               type="text" 
               class="form-control" 
               id="lenght"
-              [value]='lenght'
+              (input)="onInput($event.target.value)"
               >
           </div>
 
@@ -64,7 +64,10 @@
           </div>
 
           <!-- Here the Submit button -->
-          <button class="btn btn-primary mt-4" (click)='genPassword()'>
+          <button
+            [disabled]="!(lenght && (useLetters || useNumbers || useSymbols ))" 
+            class="btn btn-primary mt-4" 
+            (click)='genPassword()'>
             Generate Password
           </button>
 
@@ -75,6 +78,6 @@
   </div>
 </div>
 
-<p class="h1 text-center mt-5 text-muted">
-  P@$$w0rd
+<p class="h1 text-center mt-5 text-muted" *ngIf="password">
+  {{ password }}
 </p>

@@ -12,6 +12,15 @@ export class AppComponent {
   useLetters = false;
   useNumbers = false;
   useSymbols = false;
+  password = '';
+
+  onInput(value: string) {
+    const parsedValue = parseInt(value);
+
+    if (!isNaN(parsedValue)) {
+      this.lenght = parsedValue;
+    }
+  }
 
   onChangeLetters() {
     this.useLetters = !this.useLetters;
@@ -26,7 +35,33 @@ export class AppComponent {
   }
 
   genPassword() {
-   console.log(
-     `use letters : [${ this.useLetters}]\nuse Numbers : [${this.useNumbers}]\nUse Symbols : [${this.useSymbols}]`); 
+    const letters = 'qwertyuiopasdfghjklzxcvbnm';
+    const numbers = '123456789';
+    const symbols = '!@#$%&*(_+-)';
+
+    let allowedValues = '';
+
+    if (this.useLetters) {
+      allowedValues +=  letters;
+    }
+
+    if (this.useNumbers) {
+      allowedValues +=  numbers;
+    }
+
+    if (this.useSymbols) {
+      allowedValues +=  symbols;
+    }
+
+    let generatedPassword = '';
+
+
+    for(let i = 0; i < this.lenght ; i++) {
+      const index = Math.floor(Math.random() * allowedValues.length);
+      generatedPassword += allowedValues[index];
+    }
+
+    this.password = generatedPassword
+
   }
 }
